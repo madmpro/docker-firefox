@@ -1,7 +1,9 @@
 FROM jlesage/firefox
 
 # Switch Alpine to Edge repository and update all packages
-RUN sed -i '/edge/ s/^#//g' /etc/apk/repositories && \
+RUN sed -i '/edge/ s/^#//g' /etc/apk/repositories
+
+RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing && \
     apk update && \
     apk upgrade --available
 
