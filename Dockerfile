@@ -10,7 +10,7 @@ RUN latest=$(apk list firefox | tail -n 1 | cut -d " " -f 1 | sed 's/firefox-//'
     add-pkg firefox=$latest --force
 
 # Install dependencies
-RUN add-pkg python3 python3-websockify python3-numpy
+RUN add-pkg python3 websockify
 
 # Run websockify
 RUN websockify -D --web=/usr/share/novnc/ 5801 localhost:5800
@@ -19,3 +19,4 @@ RUN websockify -D --web=/usr/share/novnc/ 5801 localhost:5800
 #                                           --- exposed port
 
 
+#ENTRYPOINT ["/opt/websockify/run"]
