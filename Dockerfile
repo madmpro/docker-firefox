@@ -12,12 +12,16 @@ RUN latest=$(apk list firefox | tail -n 1 | cut -d " " -f 1 | sed 's/firefox-//'
     add-pkg firefox=$latest --force
 
 # Install dependencies
-RUN apk add python3
+RUN apk add python3 py3-pip py3-numpy
 
-RUN apk add websockify --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
+RUN pip3 install --no-cache-dir websockify
+
+#RUN git clone https://github.com/kanaka/websockify
+
+#RUN apk add websockify --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
 
 # Run websockify
-RUN websockify -D --web=/usr/share/novnc/ 5801 localhost:5800
+RUN python3 websockify -D  5801 localhost:5800
 #                                           |             |
 #                                           |             --- novnc port 
 #                                           --- exposed port
