@@ -21,7 +21,7 @@ RUN pip3 install --no-cache-dir websockify
 #RUN apk add websockify --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
 
 # Run websockify
-RUN python3 websockify -D  5801 localhost:5800
+RUN python3 -m websockify -D  5801 localhost:5800
 #                                           |             |
 #                                           |             --- novnc port 
 #                                           --- exposed port
